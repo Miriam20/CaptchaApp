@@ -1,0 +1,54 @@
+openapi: 3.0.1
+info:
+  title: Captcha Challenge
+  version: 1.0.0
+paths:
+  /generate:
+    get:
+      summary: Generate and store a captcha
+      responses:
+        "200":
+          description: Successful execution
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generateResponse"
+        "500":
+          description: Fatal error during the request
+  /validate:
+    post:
+      description: Validate a text against a created captcha
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/validateRequest"
+        required: true
+      responses:
+        "200":
+          description: Successful execution
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/validateResponse"
+        "500":
+          description: Fatal error while validating the request
+components:
+  schemas:
+    generateResponse:
+      type: object
+      properties:
+        data:
+          type: string
+    validateRequest:
+      type: object
+      properties:
+        text:
+          type: string
+        data:
+          type: string
+    validateResponse:
+      type: object
+      properties:
+        data:
+          type: boolean
