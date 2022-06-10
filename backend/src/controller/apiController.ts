@@ -2,7 +2,7 @@ import bodyParser from "body-parser";
 import { Express } from "express-serve-static-core";
 import { CaptchaService } from "../service/captchaService";
 
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 
 export class ApiController {
   constructor(private readonly app: Express, captcha: CaptchaService) {

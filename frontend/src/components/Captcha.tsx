@@ -1,4 +1,5 @@
 import React, { FormEvent, useEffect, useState } from "react";
+import { API_URL } from "../constants";
 import "../index.css";
 
 const CORRECT = "correct";
@@ -20,7 +21,7 @@ const Captcha: React.FC<{ data: string }> = ({ data }) => {
 
     setText("");
 
-    const res = await fetch("/validate", requestOptions);
+    const res = await fetch(`${API_URL}/validate`, requestOptions);
     const isCorrect = await res.json();
     setResult(isCorrect ? CORRECT : INCORRECT);
   };

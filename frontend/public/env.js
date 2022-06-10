@@ -1,0 +1,4 @@
+window.env = {
+  "API_URL_PROD": "http://backend:3001",
+  "API_URL_DEV": "http://localhost:3001"
+};
