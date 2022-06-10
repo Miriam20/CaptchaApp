@@ -1,4 +1,3 @@
-import { CaptchaObj } from "svg-captcha";
 import { CaptchaModel } from "../model/captchaModel";
 
 export class CaptchaService {
@@ -9,7 +8,7 @@ export class CaptchaService {
   private servedCaptcha: Map<string, CaptchaModel>;
   private EXPIRATION_TIME_MS: number;
 
-  create(): CaptchaObj {
+  create(): CaptchaModel {
     const captcha = new CaptchaModel();
     this.servedCaptcha.set(captcha.data, captcha);
     return captcha;
@@ -18,6 +17,7 @@ export class CaptchaService {
   validate(text: string, data: string): boolean {
     const lowerCaseText = text.toLocaleLowerCase();
     const storedData = this.servedCaptcha.get(data);
+
     if (!storedData) {
       throw "Unexpected error: unknown captcha";
     }
@@ -26,5 +26,9 @@ export class CaptchaService {
       new Date().getTime() - storedData.timestamp.getTime() >
       this.EXPIRATION_TIME_MS;
     return storedData.text === lowerCaseText && !isExpired ? true : false;
+  }
+
+  isCaptchaStored(data: string) {
+    return this.servedCaptcha.get(data) !== undefined;
   }
 }
