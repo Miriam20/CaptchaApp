@@ -8,7 +8,7 @@ const Captcha: React.FC<{ data: string }> = ({ data }) => {
   const [text, setText] = useState("");
   const [result, setResult] = useState("");
 
-  const validateCaptcha = (e: FormEvent<HTMLFormElement>) => {
+  const validateCaptcha = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const requestOptions = {
       method: "POST",
@@ -20,12 +20,9 @@ const Captcha: React.FC<{ data: string }> = ({ data }) => {
 
     setText("");
 
-    fetch("/validate", requestOptions)
-      .then((res) => res.json())
-      .then((data) => {
-        const res = data ? CORRECT : INCORRECT;
-        setResult(res);
-      });
+    const res = await fetch("/validate", requestOptions);
+    const isCorrect = await res.json();
+    setResult(isCorrect ? CORRECT : INCORRECT);
   };
 
   useEffect(() => {

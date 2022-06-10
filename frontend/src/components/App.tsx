@@ -5,10 +5,10 @@ import Captcha from "./Captcha";
 const App = () => {
   const [data, setData] = useState(null);
 
-  const generateCaptcha = () => {
-    fetch("/generate")
-      .then((res) => res.json())
-      .then((data) => setData(data));
+  const generateCaptcha = async () => {
+    const res = await fetch("/generate");
+    const data = await res.json();
+    setData(data);
   };
 
   return (
