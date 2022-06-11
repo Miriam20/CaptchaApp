@@ -39,8 +39,8 @@ describe("captcha service tests", () => {
   ])(
     "correctly validates the requests and deletes from map (%s, %s)",
     (text: string, data: string, result: boolean) => {
-      expect(captchaService.validate(text, data)).toEqual(result);
-      expect(captchaService.isCaptchaStored(data)).toBeFalsy();
+      expect(captchaService.isTextCorrect(text, data)).toEqual(result);
+      expect(captchaService.isStored(data)).toBeFalsy();
     }
   );
 
@@ -50,6 +50,6 @@ describe("captcha service tests", () => {
       data: "newcaptcha",
     });
     captchaService.create();
-    expect(captchaService.isCaptchaStored("newcaptcha")).toBeTruthy();
+    expect(captchaService.isStored("newcaptcha")).toBeTruthy();
   });
 });

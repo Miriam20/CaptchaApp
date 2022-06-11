@@ -8,8 +8,8 @@ Click the button to generate a Captcha. You have 10 second to insert the correct
 
 ### Test the app
 
-1. Browse to the `backend` folder and type: `npm run start`
-2. In another shell, browse to the `frontend` folder and type: `npm run start`
+1. Browse to the `backend` folder and type: `npm install` and `npm run start`
+2. In another shell, browse to the `frontend` folder and type: `npm install` and `npm run start`
 3. In a browser of your choice, browse to: `http://localhost:3000/`
 4. Try it out!
 

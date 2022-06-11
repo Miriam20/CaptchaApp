@@ -1,11 +1,11 @@
 openapi: 3.0.1
 info:
-  title: Captcha Challenge
+  title: Captcha App
   version: 1.0.0
 paths:
   /generate:
     get:
-      summary: Generate and store a captcha
+      summary: Generate and store a captcha. It returns the SVG image of the captcha.
       responses:
         "200":
           description: Successful execution
@@ -17,7 +17,7 @@ paths:
           description: Fatal error during the request
   /validate:
     post:
-      description: Validate a text against a created captcha
+      description: Validate a text against a created captcha. It returns true if the provided text is correct and the timeout has not expired, it returns false otherwise.
       requestBody:
         content:
           application/json:

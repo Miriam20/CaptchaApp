@@ -14,7 +14,7 @@ export class CaptchaService {
     return captcha;
   }
 
-  validate(text: string, data: string): boolean {
+  isTextCorrect(text: string, data: string): boolean {
     const lowerCaseText = text.toLocaleLowerCase();
     const storedData = this.servedCaptcha.get(data);
 
@@ -28,7 +28,7 @@ export class CaptchaService {
     return storedData.text === lowerCaseText && !isExpired ? true : false;
   }
 
-  isCaptchaStored(data: string) {
+  isStored(data: string) {
     return this.servedCaptcha.get(data) !== undefined;
   }
 }

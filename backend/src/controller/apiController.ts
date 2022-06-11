@@ -14,7 +14,7 @@ export class ApiController {
     });
 
     this.app.post("/validate", (req, res) => {
-      const result = captcha.validate(req.body.text, req.body.data);
+      const result = captcha.isTextCorrect(req.body.text, req.body.data);
       res.json(result);
     });
 
