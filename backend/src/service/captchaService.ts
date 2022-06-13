@@ -1,12 +1,11 @@
+import { EXPIRATION_TIME_MS } from "../config";
 import { CaptchaModel } from "../model/captchaModel";
 
 export class CaptchaService {
   constructor() {
     this.servedCaptcha = new Map<string, CaptchaModel>();
-    this.EXPIRATION_TIME_MS = 10000;
   }
   private servedCaptcha: Map<string, CaptchaModel>;
-  private EXPIRATION_TIME_MS: number;
 
   create(): CaptchaModel {
     const captcha = new CaptchaModel();
@@ -24,7 +23,7 @@ export class CaptchaService {
     this.servedCaptcha.delete(data);
     const isExpired =
       new Date().getTime() - storedData.timestamp.getTime() >
-      this.EXPIRATION_TIME_MS;
+      EXPIRATION_TIME_MS;
     return storedData.text === lowerCaseText && !isExpired ? true : false;
   }
 
